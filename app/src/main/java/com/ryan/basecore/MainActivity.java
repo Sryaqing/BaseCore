@@ -7,7 +7,7 @@ import android.os.Bundle;
 /**
  * @Author: Ryan
  * @Date: 2020/5/6 15:30
- * @Description: java类作用描述
+ * @Description: Main
  */
 public class MainActivity extends AppCompatActivity {
 
