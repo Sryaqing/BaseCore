@@ -4,6 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * @Author: Ryan
+ * @Date: 2020/5/6 15:30
+ * @Description: java类作用描述
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
