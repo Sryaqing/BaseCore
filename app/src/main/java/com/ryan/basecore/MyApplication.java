@@ -1,7 +1,5 @@
 package com.ryan.basecore;
 
-import android.app.Application;
-
 import com.mob.MobApplication;
 
 
@@ -15,4 +13,6 @@ public class MyApplication extends MobApplication {
     public void onCreate() {
         super.onCreate();
     }
+
+
 }

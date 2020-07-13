@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -15,11 +16,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/colorPrimary"
+        android:gravity="center"
         android:hint="文字转语音"
         android:padding="5dp"
         android:textColor="#fff"
-        android:textSize="18sp"
-        android:gravity="center" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_translation"
@@ -57,4 +58,19 @@
         android:textColor="#fff"
         android:textSize="18sp" />
 
+    <com.ryan.basecore.widgets.RyanCircleView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        app:ryan_circle_color="@color/colorAccent" />
+
+    <com.ryan.basecore.widgets.MyGridLayout
+        android:id="@+id/layout_nine_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#000"
+        android:visibility="gone"
+        app:spacing="8dp" />
 </LinearLayout>

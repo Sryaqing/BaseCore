@@ -1,16 +1,16 @@
 package com.ryan.basecore;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mob.pushsdk.MobPush;
 import com.mob.pushsdk.MobPushCustomMessage;
@@ -20,10 +20,15 @@ import com.ryan.basecore.utils.QMUIStatusBarHelper;
 import com.ryan.basecore.utils.StatusBarUtil;
 import com.ryan.basecore.utils.permission.PermissionsUtil;
 import com.ryan.basecore.utils.permission.PermissionsUtils;
+import com.ryan.basecore.widgets.CommonDialog;
+import com.ryan.basecore.widgets.MyGridLayout;
 import com.ryan.sdkj_core.ocr.ZxingScanActivity;
 import com.ryan.sdkj_core.remind.InsertCalendarCallback;
 import com.ryan.sdkj_core.remind.RyanCalendar;
 import com.ryan.sdkj_core.voice.RyanVoice;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -36,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_remind;
     TextView tv_scan;
     EditText et_text;
+    MyGridLayout layout;
     private MobPushReceiver mobPushReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         QMUIStatusBarHelper.setStatusBarLightMode(this);
         StatusBarUtil.setColor(this, getResources().getColor(R.color.themeYellow));
         init();
+        // MyIntentService.start(this);
     }
 
     private void init() {
@@ -53,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         et_text = findViewById(R.id.et_text);
         tv_remind = findViewById(R.id.tv_remind);
         tv_scan = findViewById(R.id.tv_scan);
+        layout = findViewById(R.id.layout_nine_grid);
+
+        List<String> urlList = new ArrayList<>();//图片url
+        for (int i = 0; i < 4; i++) {
+            urlList.add("http://pic1.win4000.com/pic/2/38/b1f9fd838d_250_350.jpg");
+        }
+        layout.setExtraNumStyle(Color.RED, 18);//设置字体颜色
+        layout.setSpacing(20); //动态设置图片之间的间隔
+        //layout.setData(urlList); //最后再设置图片url
+
         //语音引擎初始化
         RyanVoice.getInstance().initRyanVoice(getApplicationContext());
 
@@ -69,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
         tv_remind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                CommonDialog.showDialog(getSupportFragmentManager(), "添加日程", "确认是否添加日程", new CommonDialog.CallBack() {
+                    @Override
+                    public void sureCall() {
+
+                    }
+
+                    @Override
+                    public void failCall() {
+
+                    }
+                });
                 PermissionsUtils.getInstance().chekPermissions(MainActivity.this, PermissionsUtil.PERMISSION_CALENDAR, new PermissionsUtils.IPermissionsResult() {
                     @Override
                     public void passPermissons() {
@@ -155,5 +184,4 @@ public class MainActivity extends AppCompatActivity {
         RyanVoice.getInstance().stopVoice();
         MobPush.removePushReceiver(mobPushReceiver);
     }
-
 }

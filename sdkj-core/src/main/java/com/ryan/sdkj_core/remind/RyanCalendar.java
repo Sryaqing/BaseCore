@@ -18,7 +18,7 @@ import java.util.TimeZone;
 /**
  * @Author: Ryan
  * @Date: 2020/7/7 14:40
- * @Description: 具体功能实现
+ * @Description: 往系统日历添加日程具体功能实现
  */
 public class RyanCalendar implements ICalendarWarn {
 
@@ -30,7 +30,6 @@ public class RyanCalendar implements ICalendarWarn {
     private static final String CALENDARS_ACCOUNT_NAME = "BOOHEE@boohee.com";
     private static final String CALENDARS_ACCOUNT_TYPE = "com.android.boohee";
     private static final String CALENDARS_DISPLAY_NAME = "BOOHEE账户";
-
 
 
     private static RyanCalendar instance;
@@ -120,7 +119,7 @@ public class RyanCalendar implements ICalendarWarn {
      * @param insertCalendarCallback 结果回调
      */
     @Override
-    public void addCalendarEvent(@NonNull Context context, String title, String description, long reminderTime, int previousMinute,
+    public void addCalendarEvent(@NonNull Context context, String title, String description, long reminderTime, int previousRemindMinute,
                                  InsertCalendarCallback insertCalendarCallback) {
         int calId = checkAndAddCalendarAccount(context); //获取日历账户的id
         if (calId < 0) { //获取账户id失败直接返回，添加日历事件失败
@@ -153,7 +152,7 @@ public class RyanCalendar implements ICalendarWarn {
         //事件提醒的设定
         ContentValues values = new ContentValues();
         values.put(CalendarContract.Reminders.EVENT_ID, ContentUris.parseId(newEvent));
-        values.put(CalendarContract.Reminders.MINUTES, previousMinute);// 提前previousDate几分钟有提醒
+        values.put(CalendarContract.Reminders.MINUTES, previousRemindMinute);// 提前previousDate几分钟有提醒
         values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
         Uri uri = context.getContentResolver().insert(Uri.parse(CALENDER_REMINDER_URL), values);
         if (uri != null) { //添加事件提醒失败直接返回

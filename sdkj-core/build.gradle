@@ -32,6 +32,6 @@ dependencies {
     //Zxing相关
     implementation 'cn.bingoogolapple:bga-qrcode-zxing:1.3.7'
     implementation 'cn.bingoogolapple:bga-qrcode-zbar:1.3.7'
-
+    api 'com.github.bumptech.glide:glide:4.11.0'
 
 }
