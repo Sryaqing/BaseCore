@@ -1,2 +1,3 @@
+include ':sdkj-core'
 rootProject.name='BaseCore'
 include ':app'
