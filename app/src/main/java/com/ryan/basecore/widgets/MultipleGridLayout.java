@@ -144,6 +144,7 @@ public abstract class MultipleGridLayout extends ViewGroup implements IMultipleG
         addView(imageView);
         //显示超过9张的图片数量
         if (isShowExtraNum && i == MAX_IMAGE_COUNT - 1) {
+
             int overCount = getListSize(mUrlList) - MAX_IMAGE_COUNT;
             if (overCount > 0) {
                 final TextView textView = new TextView(mContext);
